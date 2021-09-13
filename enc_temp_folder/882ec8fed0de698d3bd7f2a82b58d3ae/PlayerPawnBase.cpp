@@ -10,7 +10,7 @@ APlayerPawnBase::APlayerPawnBase()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	
-	PawnCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("PawnCamera"));
+	PawnCamera = CreateAbstractDefaultSubobject<UCameraComponent>(TEXT("PawnCamera"));
 	RootComponent = PawnCamera;
 }
 
@@ -18,7 +18,7 @@ APlayerPawnBase::APlayerPawnBase()
 void APlayerPawnBase::BeginPlay()
 {
 	Super::BeginPlay();
-	SetActorRotation(FRotator(-90, 0, 0));
+	
 }
 
 // Called every frame
