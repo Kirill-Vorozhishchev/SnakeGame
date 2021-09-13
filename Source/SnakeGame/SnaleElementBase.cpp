@@ -2,13 +2,14 @@
 
 
 #include "SnaleElementBase.h"
+#include "Engine/Classes/Components/StaticMeshComponent.h"
 
 // Sets default values
 ASnaleElementBase::ASnaleElementBase()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-
+	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MehComponent"));
 }
 
 // Called when the game starts or when spawned

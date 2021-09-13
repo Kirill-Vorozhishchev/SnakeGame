@@ -2,6 +2,7 @@
 
 
 #include "SnakeBase.h"
+#include "SnaleElementBase.h"
 
 // Sets default values
 ASnakeBase::ASnakeBase()
@@ -15,7 +16,7 @@ ASnakeBase::ASnakeBase()
 void ASnakeBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	GetWorld()->SpawnActor<ASnaleElementBase>(SnaleElementClass, GetActorTransform());
 }
 
 // Called every frame
