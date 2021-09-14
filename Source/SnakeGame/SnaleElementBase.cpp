@@ -26,3 +26,7 @@ void ASnaleElementBase::Tick(float DeltaTime)
 
 }
 
+void ASnaleElementBase::SetFirstElementType_Implementation()
+{
+
+}
