@@ -25,3 +25,8 @@ void AFood::Tick(float DeltaTime)
 
 }
 
+void AFood::Interact(AActor* Interact)
+{
+
+}
+
