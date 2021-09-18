@@ -3,6 +3,8 @@
 
 #include "SnakeBase.h"
 #include "SnaleElementBase.h"
+#include "Interactable.h"
+
 
 // Sets default values
 ASnakeBase::ASnakeBase()
@@ -41,6 +43,7 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 		if (ElemIndex == 0)
 		{
 			NewSnakeElem->SetFirstElementType();
+			
 		}
 	}
 }
@@ -48,26 +51,25 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 void ASnakeBase::Move()
 {
 	FVector MovementVector(ForceInitToZero);
-	float MovementSpeed = ElementSize;
-
 	switch (LastMoveDirection)
 	{
 	case EMovementDirection::UP:
-		MovementVector.X += MovementSpeed;
+		MovementVector.X += ElementSize;
 		break;
 	case EMovementDirection::DOWN:
-		MovementVector.X -= MovementSpeed;
+		MovementVector.X -= ElementSize;
 		break;
 	case EMovementDirection::LEFT:
-		MovementVector.Y += MovementSpeed;
+		MovementVector.Y += ElementSize;
 		break;
 	case EMovementDirection::RIGHT:
-		MovementVector.Y -= MovementSpeed;
+		MovementVector.Y -= ElementSize;
 		break;
 		
 	}
-
+	
 	//AddActorWorldOffset(MovementVector);
+	SnakeElements[0]->ToggleCollision();
 
 	for (int i = SnakeElements.Num() - 1; i > 0; i--)
 	{
@@ -78,6 +80,7 @@ void ASnakeBase::Move()
 	}
 
 	SnakeElements[0]->AddActorWorldOffset(MovementVector);
+	SnakeElements[0]->ToggleCollision();
 }
 
 void ASnakeBase::SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActor* Other)
@@ -87,5 +90,11 @@ void ASnakeBase::SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActo
 		int32 ElemIndex;
 		SnakeElements.Find(OverlappedElement, ElemIndex);
 		bool bIsFirst = ElemIndex == 0;
+		IInteractable* Interactableinterface = Cast<IInteractable>(Other);
+		if (Interactableinterface)
+		{
+			Interactableinterface->Interact(this, bIsFirst);
+		}
 	}
 }
+

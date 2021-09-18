@@ -19,7 +19,6 @@ ASnaleElementBase::ASnaleElementBase()
 void ASnaleElementBase::BeginPlay()
 {
 	Super::BeginPlay();
-	MeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ASnaleElementBase::HandleBeginOverLap);
 }
 // Called every frame
 void ASnaleElementBase::Tick(float DeltaTime)
@@ -30,12 +29,16 @@ void ASnaleElementBase::Tick(float DeltaTime)
 
 void ASnaleElementBase::SetFirstElementType_Implementation()
 {
-
+	MeshComponent->OnComponentBeginOverlap.AddDynamic(this, &ASnaleElementBase::HandleBeginOverLap);
 }
 
-void ASnaleElementBase::Interact(AActor* Interactor)
+void ASnaleElementBase::Interact(AActor* Interactor, bool bIsHead)
 {
-
+	auto Snake = Cast<ASnakeBase>(Interactor);
+	if (IsValid(Snake))
+	{
+		Snake->Destroy();
+	}
 }
 
 void ASnaleElementBase::HandleBeginOverLap(UPrimitiveComponent* OverlappedComponent,
@@ -48,6 +51,18 @@ void ASnaleElementBase::HandleBeginOverLap(UPrimitiveComponent* OverlappedCompon
 	if (IsValid(SnakeOwner))
 	{
 		SnakeOwner->SnakeElementOverlap(this, OtherActor);
+	}
+}
+
+void ASnaleElementBase::ToggleCollision()
+{
+	if (MeshComponent->GetCollisionEnabled() == ECollisionEnabled::NoCollision)
+	{
+		MeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+	}
+	else
+	{
+		MeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 }
 

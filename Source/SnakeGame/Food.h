@@ -25,6 +25,6 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 
-	virtual void Interact(AActor* Interact) override;
+	virtual void Interact(AActor* Interactor, bool bIsHead) override;
 
 };
