@@ -24,3 +24,4 @@ class SNAKEGAME_API IInteractable
 public:
 	virtual void Interact(AActor* Interactor, bool bIsHead);
 };
+

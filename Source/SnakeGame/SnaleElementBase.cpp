@@ -13,18 +13,19 @@ ASnaleElementBase::ASnaleElementBase()
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MehComponent"));
 	MeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	MeshComponent->SetCollisionResponseToAllChannels(ECR_Overlap);
+	
 }
 
 // Called when the game starts or when spawned
 void ASnaleElementBase::BeginPlay()
 {
 	Super::BeginPlay();
+
 }
 // Called every frame
 void ASnaleElementBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 void ASnaleElementBase::SetFirstElementType_Implementation()
@@ -34,6 +35,7 @@ void ASnaleElementBase::SetFirstElementType_Implementation()
 
 void ASnaleElementBase::Interact(AActor* Interactor, bool bIsHead)
 {
+	
 	auto Snake = Cast<ASnakeBase>(Interactor);
 	if (IsValid(Snake))
 	{
@@ -46,7 +48,7 @@ void ASnaleElementBase::HandleBeginOverLap(UPrimitiveComponent* OverlappedCompon
 	UPrimitiveComponent* OtherComp,
 	int32 OtherBodyIndex,
 	bool bFromSweep,
-	const FHitResult& SweepResult)
+	const FHitResult &SweepResult)
 {
 	if (IsValid(SnakeOwner))
 	{
@@ -59,10 +61,10 @@ void ASnaleElementBase::ToggleCollision()
 	if (MeshComponent->GetCollisionEnabled() == ECollisionEnabled::NoCollision)
 	{
 		MeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+		
 	}
 	else
 	{
 		MeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 }
-

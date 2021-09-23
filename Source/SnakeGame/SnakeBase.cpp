@@ -43,7 +43,6 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 		if (ElemIndex == 0)
 		{
 			NewSnakeElem->SetFirstElementType();
-			
 		}
 	}
 }
@@ -90,10 +89,11 @@ void ASnakeBase::SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActo
 		int32 ElemIndex;
 		SnakeElements.Find(OverlappedElement, ElemIndex);
 		bool bIsFirst = ElemIndex == 0;
-		IInteractable* Interactableinterface = Cast<IInteractable>(Other);
-		if (Interactableinterface)
+		IInteractable* InteractableInterface = Cast<IInteractable>(Other);
+		if (InteractableInterface)
 		{
-			Interactableinterface->Interact(this, bIsFirst);
+			InteractableInterface->Interact(this, bIsFirst);
+
 		}
 	}
 }

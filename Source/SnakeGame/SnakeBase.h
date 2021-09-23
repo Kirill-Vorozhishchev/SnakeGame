@@ -48,9 +48,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	UFUNCTION(BlueprintCallable)
-	void AddSnakeElement(int ElementsNum = 1);
+	void AddSnakeElement(int ElementsNum = +1);
 	UFUNCTION(BlueprintCallable)
 	void Move();
 	UFUNCTION()
-	void SnakeElementOverlap( ASnaleElementBase* OverlappedElement, AActor* Other);
+	void SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActor* Other);
 };
