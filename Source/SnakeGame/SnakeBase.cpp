@@ -33,9 +33,9 @@ void ASnakeBase::Tick(float DeltaTime)
 
 void ASnakeBase::AddSnakeElement(int ElementsNum)
 {
-	for (int i = 0; i < ElementsNum; i++)
+	for (int i = 0; i < ElementsNum; ++i)
 	{
-		FVector NewLocation(SnakeElements.Num() * ElementSize, 0, 0);
+		FVector NewLocation(SnakeElements.Num()*ElementSize, 0, 0);
 		FTransform NewTransform(NewLocation);
 		ASnaleElementBase* NewSnakeElem = GetWorld()->SpawnActor<ASnaleElementBase>(SnaleElementClass, NewTransform);
 		NewSnakeElem->SnakeOwner = this;
@@ -50,6 +50,7 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 void ASnakeBase::Move()
 {
 	FVector MovementVector(ForceInitToZero);
+	
 	switch (LastMoveDirection)
 	{
 	case EMovementDirection::UP:
@@ -97,4 +98,3 @@ void ASnakeBase::SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActo
 		}
 	}
 }
-

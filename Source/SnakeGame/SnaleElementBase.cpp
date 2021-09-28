@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "SnaleElementBase.h"
 #include "Engine/Classes/Components/StaticMeshComponent.h"
 #include "SnakeBase.h"
@@ -13,14 +12,12 @@ ASnaleElementBase::ASnaleElementBase()
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("MehComponent"));
 	MeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
 	MeshComponent->SetCollisionResponseToAllChannels(ECR_Overlap);
-	
 }
 
 // Called when the game starts or when spawned
 void ASnaleElementBase::BeginPlay()
 {
 	Super::BeginPlay();
-
 }
 // Called every frame
 void ASnaleElementBase::Tick(float DeltaTime)
@@ -35,7 +32,6 @@ void ASnaleElementBase::SetFirstElementType_Implementation()
 
 void ASnaleElementBase::Interact(AActor* Interactor, bool bIsHead)
 {
-	
 	auto Snake = Cast<ASnakeBase>(Interactor);
 	if (IsValid(Snake))
 	{
@@ -61,7 +57,6 @@ void ASnaleElementBase::ToggleCollision()
 	if (MeshComponent->GetCollisionEnabled() == ECollisionEnabled::NoCollision)
 	{
 		MeshComponent->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
-		
 	}
 	else
 	{
