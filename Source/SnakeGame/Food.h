@@ -7,6 +7,8 @@
 #include "Interactable.h"
 #include "Food.generated.h"
 
+class AFood;
+
 UCLASS()
 class SNAKEGAME_API AFood : public AActor, public IInteractable
 {
@@ -15,6 +17,12 @@ class SNAKEGAME_API AFood : public AActor, public IInteractable
 public:	
 	// Sets default values for this actor's properties
 	AFood();
+
+	UPROPERTY(BlueprintReadWrite)
+	AFood* FoodActor;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AFood> FoodActorClass;
 
 protected:
 	// Called when the game starts or when spawned
@@ -30,4 +38,5 @@ public:
 
 	virtual void Interact(AActor* Interactor, bool bIsHead) override;
 
+	void CreateFoodActor();
 };

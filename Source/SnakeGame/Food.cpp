@@ -15,6 +15,8 @@ AFood::AFood()
 void AFood::BeginPlay()
 {
 	Super::BeginPlay();
+	CreateFoodActor();
+	SetActorLocation(FVector(-350, 0, 0));
 }
 
 // Called every frame
@@ -32,6 +34,17 @@ void AFood::Interact(AActor* Interactor, bool bIsHead)
 		{
 			Snake->AddSnakeElement();
 			Destroy();
+
+			auto ElementFood = Cast<ASnakeBase>(Interactor);
+			if (IsValid(ElementFood))
+			{
+				CreateFoodActor();
+			}
 		}
 	}
+}
+
+void AFood::CreateFoodActor()
+{
+	FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform());
 }
