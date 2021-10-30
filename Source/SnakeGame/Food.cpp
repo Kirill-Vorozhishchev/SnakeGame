@@ -1,6 +1,5 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
 #include "Food.h"
 #include "SnakeBase.h"
 
@@ -15,7 +14,7 @@ AFood::AFood()
 void AFood::BeginPlay()
 {
 	Super::BeginPlay();
-	CreateFoodActor();
+	//CreateFoodActor();
 	SetActorLocation(FVector(-350, 0, 0));
 }
 
@@ -23,6 +22,28 @@ void AFood::BeginPlay()
 void AFood::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+
+
+void AFood::RandomVector()
+{
+	const int Height = (-500, 500);
+	const int Width = (-1100, 1100);
+	int Foodx, Foody;
+	Foodx = rand() % Height;
+	Foody = rand() % Width;
+
+	for (int i = 0; i < Height; i++)
+	{
+		for (int j = 0; j < Width; j++)
+		{
+			if (i == Foodx && j == Foody)
+			{
+			
+			}
+		}
+	}
 }
 
 void AFood::Interact(AActor* Interactor, bool bIsHead)
@@ -34,17 +55,11 @@ void AFood::Interact(AActor* Interactor, bool bIsHead)
 		{
 			Snake->AddSnakeElement();
 			Destroy();
-
-			auto ElementFood = Cast<ASnakeBase>(Interactor);
-			if (IsValid(ElementFood))
+			auto Food = Cast<ASnakeBase>(Interactor);
+			if (IsValid(Food))
 			{
-				CreateFoodActor();
+				RandomVector();
 			}
 		}
 	}
-}
-
-void AFood::CreateFoodActor()
-{
-	FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform());
 }

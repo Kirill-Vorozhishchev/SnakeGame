@@ -18,11 +18,7 @@ public:
 	// Sets default values for this actor's properties
 	AFood();
 
-	UPROPERTY(BlueprintReadWrite)
-	AFood* FoodActor;
 
-	UPROPERTY(EditDefaultsOnly)
-	TSubclassOf<AFood> FoodActorClass;
 
 protected:
 	// Called when the game starts or when spawned
@@ -38,5 +34,6 @@ public:
 
 	virtual void Interact(AActor* Interactor, bool bIsHead) override;
 
-	void CreateFoodActor();
+	//void CreateFoodActor();
+	void RandomVector();
 };

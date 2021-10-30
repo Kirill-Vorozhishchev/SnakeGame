@@ -9,6 +9,7 @@
 
 class UStaticMeshComponent;
 class ASnakeBase;
+class AFood;
 
 UCLASS()
 class SNAKEGAME_API ASnaleElementBase : public AActor, public IInteractable
@@ -24,6 +25,13 @@ public:
 
 	UPROPERTY()
 	ASnakeBase* SnakeOwner;
+
+	UPROPERTY(BlueprintReadWrite)
+	AFood* FoodActor;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AFood> FoodActorClass;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -51,4 +59,6 @@ public:
 	
 	UFUNCTION()
 	void ToggleVisible();
+
+	void CreateFoodActor();
 };

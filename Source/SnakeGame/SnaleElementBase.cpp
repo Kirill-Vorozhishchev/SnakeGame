@@ -3,6 +3,7 @@
 #include "SnaleElementBase.h"
 #include "Engine/Classes/Components/StaticMeshComponent.h"
 #include "SnakeBase.h"
+#include "Food.h"
 
 // Sets default values
 ASnaleElementBase::ASnaleElementBase()
@@ -18,6 +19,7 @@ ASnaleElementBase::ASnaleElementBase()
 void ASnaleElementBase::BeginPlay()
 {
 	Super::BeginPlay();
+	CreateFoodActor();
 }
 // Called every frame
 void ASnaleElementBase::Tick(float DeltaTime)
@@ -67,4 +69,9 @@ void ASnaleElementBase::ToggleCollision()
 void ASnaleElementBase::ToggleVisible()
 {
 	MeshComponent->SetVisibility(true);
+}
+
+void ASnaleElementBase::CreateFoodActor()
+{
+	FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform());
 }
