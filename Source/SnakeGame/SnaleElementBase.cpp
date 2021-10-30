@@ -63,3 +63,8 @@ void ASnaleElementBase::ToggleCollision()
 		MeshComponent->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	}
 }
+
+void ASnaleElementBase::ToggleVisible()
+{
+	MeshComponent->SetVisibility(true);
+}

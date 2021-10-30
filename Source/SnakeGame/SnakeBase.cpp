@@ -77,10 +77,12 @@ void ASnakeBase::Move()
 		auto PrevElement = SnakeElements[i - 1];
 		FVector PrevLocation = PrevElement->GetActorLocation();
 		CurrentElement->SetActorLocation(PrevLocation);
+		SnakeElements[i]->ToggleVisible();
 	}
 
 	SnakeElements[0]->AddActorWorldOffset(MovementVector);
 	SnakeElements[0]->ToggleCollision();
+	SnakeElements[0]->ToggleVisible();
 }
 
 void ASnakeBase::SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActor* Other)
