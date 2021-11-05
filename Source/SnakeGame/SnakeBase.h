@@ -7,6 +7,7 @@
 #include "SnakeBase.generated.h"
 
 class ASnaleElementBase;
+class AFood;
 
 UENUM()
 enum class EMovementDirection
@@ -40,6 +41,12 @@ public:
 
 	UPROPERTY()
 	EMovementDirection LastMoveDirection;
+
+	UPROPERTY(BlueprintReadWrite)
+		AFood* FoodActor;
+
+	UPROPERTY(EditDefaultsOnly)
+		TSubclassOf<AFood> FoodActorClass;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -54,5 +61,5 @@ public:
 	void Move();
 	UFUNCTION()
 	void SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActor* Other);
-
+	void CreateFoodActor();
 };

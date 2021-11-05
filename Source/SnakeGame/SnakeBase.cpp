@@ -4,6 +4,7 @@
 #include "SnakeBase.h"
 #include "SnaleElementBase.h"
 #include "Interactable.h"
+#include "Food.h"
 
 
 // Sets default values
@@ -22,6 +23,7 @@ void ASnakeBase::BeginPlay()
 	Super::BeginPlay();
 	SetActorTickInterval(MovementsSpeed);
 	AddSnakeElement(5);
+	CreateFoodActor();
 }
 
 // Called every frame
@@ -99,4 +101,9 @@ void ASnakeBase::SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActo
 
 		}
 	}
+}
+
+void ASnakeBase::CreateFoodActor()
+{
+	FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform());
 }
