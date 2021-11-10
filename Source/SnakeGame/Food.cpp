@@ -14,8 +14,8 @@ AFood::AFood()
 void AFood::BeginPlay()
 {
 	Super::BeginPlay();
-	//CreateFoodActor();
 	SetActorLocation(FVector(-350, 0, 0));
+	
 }
 
 // Called every frame
@@ -30,17 +30,17 @@ void AFood::RandomVector()
 {
 	const int Height = (-500, 500);
 	const int Width = (-1100, 1100);
-	int Foodx, Foody;
-	Foodx = rand() % Height;
-	Foody = rand() % Width;
+	int x, y;
+	x = rand() % 500 + (-500);
+	y = rand() % 1100 + (-1100);
 
 	for (int i = 0; i < Height; i++)
 	{
 		for (int j = 0; j < Width; j++)
 		{
-			if (i == Foodx && j == Foody)
+			if (i == x && j == y)
 			{
-			
+				
 			}
 		}
 	}
@@ -55,10 +55,10 @@ void AFood::Interact(AActor* Interactor, bool bIsHead)
 		{
 			Snake->AddSnakeElement();
 			Destroy();
-			auto Food = Cast<ASnakeBase>(Interactor);
-			if (IsValid(Food))
+			auto Food = Cast<AFood>(Interactor);
+		    if (IsValid(Food))
 			{
-				RandomVector();
+
 			}
 		}
 	}
