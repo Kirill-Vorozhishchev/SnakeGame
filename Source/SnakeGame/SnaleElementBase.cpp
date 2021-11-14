@@ -65,6 +65,7 @@ void ASnaleElementBase::ToggleCollision()
 	}
 }
 
+//Невидимый актор при появлении! Метка(123+)
 void ASnaleElementBase::ToggleVisible()
 {
 	MeshComponent->SetVisibility(true);

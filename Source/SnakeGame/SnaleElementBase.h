@@ -51,6 +51,7 @@ public:
 	UFUNCTION()
 	void ToggleCollision();
 	
+	//(123+)
 	UFUNCTION()
 	void ToggleVisible();
 };

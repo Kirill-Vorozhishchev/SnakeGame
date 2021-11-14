@@ -80,11 +80,13 @@ void ASnakeBase::Move()
 		auto PrevElement = SnakeElements[i - 1];
 		FVector PrevLocation = PrevElement->GetActorLocation();
 		CurrentElement->SetActorLocation(PrevLocation);
+		//(123+)
 		SnakeElements[i]->ToggleVisible();
 	}
 
 	SnakeElements[0]->AddActorWorldOffset(MovementVector);
 	SnakeElements[0]->ToggleCollision();
+	//(123+)
 	SnakeElements[0]->ToggleVisible();
 }
 
@@ -104,13 +106,14 @@ void ASnakeBase::SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActo
 	}
 }
 
+//–андомное по€вление актора в пределах пол€!
 void ASnakeBase::CreateFoodActor()
 {
 	const int Height = (-400, 400);
 	const int Width = (-950, 950);
 	int x, y;
-	x = rand() % 800 + (-400);
-	y = rand() % 1900 + (-950);
+	x = rand() % 800 + (-400);	//предел пол€ от -400 до 400!
+	y = rand() % 1900 + (-950);	//ѕредел пол€ от -950 до 950!
 	FVector NewPosition;
 	NewPosition.X = x = rand() % 800 + (-400);
 	NewPosition.Y = y = rand() % 1900 + (-950);
