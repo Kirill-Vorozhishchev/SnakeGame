@@ -14,7 +14,6 @@ AFood::AFood()
 void AFood::BeginPlay()
 {
 	Super::BeginPlay();
-	//SetActorLocation(FVector(-350, 0, 0));
 	
 }
 

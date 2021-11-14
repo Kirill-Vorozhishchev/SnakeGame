@@ -106,22 +106,16 @@ void ASnakeBase::SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActo
 
 void ASnakeBase::CreateFoodActor()
 {
-	
-	const int Height = (-500, 500);
-	const int Width = (-1100, 1100);
+	//FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform());
+	const int Height = (-400, 400);
+	const int Width = (-950, 950);
 	int x, y;
-	x = rand() % 500 + (-500);
-	y = rand() % 1100 + (-1100);
-	for (int i = 0; i < Height; i++)
-	{
-		for (int j = 0; j < Width; j++)
-		{
-			if (i == x && j == y)
-			{
-				//FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform());
-			}
-			
-		}
-	}
-	FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform());
+	x = rand() % 400 + (-400);
+	y = rand() % 950 + (-950);
+	FVector NewPosition;
+	NewPosition.X = x = rand() % 800 + (-400);
+	NewPosition.Y = y = rand() % 1900 + (-950);
+	FTransform NewTransform(NewPosition);
+	FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform(NewPosition));
+
 }
