@@ -33,6 +33,4 @@ public:
 
 	virtual void Interact(AActor* Interactor, bool bIsHead) override;
 
-	//void CreateFoodActor();
-	void RandomVector();
 };

@@ -24,27 +24,6 @@ void AFood::Tick(float DeltaTime)
 }
 
 
-
-void AFood::RandomVector()
-{
-	const int Height = (-500, 500);
-	const int Width = (-1100, 1100);
-	int x, y;
-	x = rand() % 500 + (-500);
-	y = rand() % 1100 + (-1100);
-
-	for (int i = 0; i < Height; i++)
-	{
-		for (int j = 0; j < Width; j++)
-		{
-			if (i == x && j == y)
-			{
-				
-			}
-		}
-	}
-}
-
 void AFood::Interact(AActor* Interactor, bool bIsHead)
 {
 	if (bIsHead)
