@@ -122,5 +122,5 @@ void ASnakeBase::CreateFoodActor()
 
 void ASnakeBase::SpeedSnake()
 {
-	SetActorTickInterval(MovementsSpeed - 0.3);
+	SetActorTickInterval(MovementsSpeed - 0.1);
 }
