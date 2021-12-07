@@ -62,4 +62,5 @@ public:
 	UFUNCTION()
 	void SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActor* Other);
 	void CreateFoodActor();
+	void SpeedSnake();
 };

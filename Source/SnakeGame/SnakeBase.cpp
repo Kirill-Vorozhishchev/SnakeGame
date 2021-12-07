@@ -33,7 +33,6 @@ void ASnakeBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	Move();
-	
 }
 
 void ASnakeBase::AddSnakeElement(int ElementsNum)
@@ -55,7 +54,7 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 void ASnakeBase::Move()
 {
 	FVector MovementVector(ForceInitToZero);
-	
+
 	switch (LastMoveDirection)
 	{
 	case EMovementDirection::UP:
@@ -82,7 +81,6 @@ void ASnakeBase::Move()
 		auto PrevElement = SnakeElements[i - 1];
 		FVector PrevLocation = PrevElement->GetActorLocation();
 		CurrentElement->SetActorLocation(PrevLocation);
-		//(123+)
 		SnakeElements[i]->ToggleVisible();
 	}
 
@@ -103,7 +101,6 @@ void ASnakeBase::SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActo
 		if (InteractableInterface)
 		{
 			InteractableInterface->Interact(this, bIsFirst);
-
 		}
 	}
 }
@@ -117,40 +114,13 @@ void ASnakeBase::CreateFoodActor()
 	x = rand() % 800 + (-400);	//предел поля от -400 до 400!
 	y = rand() % 1900 + (-950);	//Предел поля от -950 до 950!
 	FVector NewPosition;
-	//Если появление Еды(Food) выподает на эти координаты, то Spawn не происходит!
-	false;
-	{
-		NewPosition.X = x =  100;
-		NewPosition.Y = y = -720;
-	}
-	false;
-	{
-		NewPosition.X = x = 330;
-		NewPosition.Y = y = -200;
-	}
-	false;
-	{
-		NewPosition.X = x = 320;
-		NewPosition.Y = y = -480;
-	}
-	false;
-	{
-		NewPosition.X = x = -170;
-		NewPosition.Y = y = 100;
-	}
-	false;
-	{
-		NewPosition.X = x = 150;
-		NewPosition.Y = y = 480;
-	}
-	false;
-	{
-		NewPosition.X = x = -280;
-		NewPosition.Y = y = 740;
-	}
 	NewPosition.X = x = rand() % 800 + (-400);
 	NewPosition.Y = y = rand() % 1900 + (-950);
 	FTransform NewTransform(NewPosition);
 	FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform(NewPosition));
-	MovementsSpeed = -1;
+}
+
+void ASnakeBase::SpeedSnake()
+{
+	SetActorTickInterval(MovementsSpeed - 0.3);
 }
