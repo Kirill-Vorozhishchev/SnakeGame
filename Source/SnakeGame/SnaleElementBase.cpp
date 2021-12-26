@@ -18,7 +18,6 @@ ASnaleElementBase::ASnaleElementBase()
 void ASnaleElementBase::BeginPlay()
 {
 	Super::BeginPlay();
-	//CreateFoodActor();
 }
 // Called every frame
 void ASnaleElementBase::Tick(float DeltaTime)

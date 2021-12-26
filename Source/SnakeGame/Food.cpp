@@ -33,8 +33,8 @@ void AFood::Interact(AActor* Interactor, bool bIsHead)
 		{
 			Snake->AddSnakeElement();
 			Snake->CreateFoodActor();
-			Destroy();
 			Snake->SpeedSnake();
+			Destroy();
 		}
 	}
 }

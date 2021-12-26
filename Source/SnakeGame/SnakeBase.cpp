@@ -26,13 +26,15 @@ void ASnakeBase::BeginPlay()
 	SetActorTickInterval(MovementsSpeed);
 	AddSnakeElement(5);
 	CreateFoodActor();
+	SpeedSnake();
 }
 
 // Called every frame
 void ASnakeBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	Move();
+	Move(); 
+	float TickInterval = -1;
 }
 
 void ASnakeBase::AddSnakeElement(int ElementsNum)
@@ -54,7 +56,6 @@ void ASnakeBase::AddSnakeElement(int ElementsNum)
 void ASnakeBase::Move()
 {
 	FVector MovementVector(ForceInitToZero);
-
 	switch (LastMoveDirection)
 	{
 	case EMovementDirection::UP:
@@ -81,7 +82,7 @@ void ASnakeBase::Move()
 		auto PrevElement = SnakeElements[i - 1];
 		FVector PrevLocation = PrevElement->GetActorLocation();
 		CurrentElement->SetActorLocation(PrevLocation);
-		SnakeElements[i]->ToggleVisible();
+		SnakeElements[i]->ToggleVisible(); 
 	}
 
 	SnakeElements[0]->AddActorWorldOffset(MovementVector);
@@ -116,11 +117,12 @@ void ASnakeBase::CreateFoodActor()
 	FVector NewPosition;
 	NewPosition.X = x = rand() % 800 + (-400);
 	NewPosition.Y = y = rand() % 1900 + (-950);
+	NewPosition.Z = 0.f;
 	FTransform NewTransform(NewPosition);
 	FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform(NewPosition));
 }
 
 void ASnakeBase::SpeedSnake()
 {
-	SetActorTickInterval(MovementsSpeed - 0.1);
+	float TickInterval(MovementsSpeed -1); UE_LOG(LogTemp, Warning, TEXT("The float value is: %f"), TickInterval);
 }
