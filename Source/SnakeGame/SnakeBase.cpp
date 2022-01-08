@@ -26,7 +26,6 @@ void ASnakeBase::BeginPlay()
 	SetActorTickInterval(MovementsSpeed);
 	AddSnakeElement(5);
 	CreateFoodActor();
-	SpeedSnake();
 }
 
 // Called every frame
@@ -82,7 +81,7 @@ void ASnakeBase::Move()
 		auto PrevElement = SnakeElements[i - 1];
 		FVector PrevLocation = PrevElement->GetActorLocation();
 		CurrentElement->SetActorLocation(PrevLocation);
-		SnakeElements[i]->ToggleVisible(); 
+		SnakeElements[i]->ToggleVisible();
 	}
 
 	SnakeElements[0]->AddActorWorldOffset(MovementVector);
@@ -102,6 +101,8 @@ void ASnakeBase::SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActo
 		if (InteractableInterface)
 		{
 			InteractableInterface->Interact(this, bIsFirst);
+			//Повышение скорости змеи после поедания еды 
+			SetActorTickInterval(MovementsSpeed+=-0.004); UE_LOG(LogTemp, Warning, TEXT("SnakeSpeedBoost: %f"), MovementsSpeed);
 		}
 	}
 }
@@ -120,9 +121,4 @@ void ASnakeBase::CreateFoodActor()
 	NewPosition.Z = 0.f;
 	FTransform NewTransform(NewPosition);
 	FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform(NewPosition));
-}
-
-void ASnakeBase::SpeedSnake()
-{
-	float TickInterval(MovementsSpeed -1); UE_LOG(LogTemp, Warning, TEXT("The float value is: %f"), TickInterval);
 }
