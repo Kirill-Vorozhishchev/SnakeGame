@@ -102,12 +102,12 @@ void ASnakeBase::SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActo
 		{
 			InteractableInterface->Interact(this, bIsFirst);
 			//Повышение скорости змеи после поедания еды 
-			SetActorTickInterval(MovementsSpeed+=-0.004); UE_LOG(LogTemp, Warning, TEXT("SnakeSpeedBoost: %f"), MovementsSpeed);
+			SetActorTickInterval(MovementsSpeed+=-0.005); UE_LOG(LogTemp, Warning, TEXT("SnakeSpeedBoost: %f"), MovementsSpeed);
 		}
 	}
 }
 
-//Рандомное появление актора в пределах поля!
+//Рандомное появление актора еды в пределах поля!
 void ASnakeBase::CreateFoodActor()
 {
 	const int Height = (-400, 400);
