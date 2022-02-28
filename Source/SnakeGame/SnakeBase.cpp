@@ -113,12 +113,35 @@ void ASnakeBase::CreateFoodActor()
 	const int Height = (-400, 400);
 	const int Width = (-950, 950);
 	int x, y;
-	x = rand() % 800 + (-400);	//предел пол€ от -400 до 400!
-	y = rand() % 1900 + (-950);	//ѕредел пол€ от -950 до 950!
+	//x = rand() % 800 + (-400);	//предел пол€ от -400 до 400!
+	//y = rand() % 1900 + (-950);	//ѕредел пол€ от -950 до 950!
 	FVector NewPosition;
-	NewPosition.X = x = rand() % 800 + (-400);
-	NewPosition.Y = y = rand() % 1900 + (-950);
+	NewPosition.X = x = rand() % 400 + (-200);
+	NewPosition.Y = y = rand() % 950 + (-475);
 	NewPosition.Z = 0.f;
 	FTransform NewTransform(NewPosition);
 	FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform(NewPosition));
 }
+
+//≈сли еда соприкасаетс€ с преп€тствием, то она(еда) уничтожаетс€ и создаЄтс€ в новом месте 
+void ASnakeBase::NewSpawn(ASnaleElementBase* NewSnakeElem, float value)
+{
+	//FVector NewPosition;
+	//FTransform NewTransform(NewPosition);
+	if (SnakeElements.Num())
+	{
+		//GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform(NewPosition));
+		if (value > 0 && FoodActor)
+		{
+			CreateFoodActor();
+			UE_LOG(LogTemp, Warning, TEXT("Spawn"));
+		}
+		else if(value < 0 && SnakeElements.Num())
+		{
+			FVector NewPosition;
+			FTransform NewTransform(NewPosition);
+			Destroy();
+			UE_LOG(LogTemp, Warning, TEXT("Destroy"));
+		}
+	}
+	

@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "SnakeBase.generated.h"
 
+
 class ASnaleElementBase;
 class AFood;
 
@@ -63,4 +64,6 @@ public:
 	void SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActor* Other);
 	UFUNCTION()
 	void CreateFoodActor();
+	UFUNCTION()
+	void NewSpawn(ASnaleElementBase* NewSnakeElem, float value);
 };
