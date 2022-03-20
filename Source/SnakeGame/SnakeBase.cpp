@@ -128,20 +128,19 @@ void ASnakeBase::NewSpawn(ASnaleElementBase* NewSnakeElem, float value)
 {
 	if (SnakeElements.Num())
 	{
-		FVector NewVector01;
-		NewVector01.X = SnakeElements.Num();
-		NewVector01.Y = SnakeElements.Num();
+		FVector NewPPosition;
+		NewPPosition.X = SnakeElements.Num();
+		NewPPosition.Y = SnakeElements.Num();
 		if (value > 0 && FoodActor)
 		{
 			float x, y;
-			FVector NewVector02;
-			NewVector02.X;
-			NewVector02.Y;
-			x,y = (NewVector02.X + NewVector01.X) - (NewVector02.Y + NewVector01.Y);
-			if (x <= 80 + (-80), 
-				y <= 80 + (-80))
+			FVector NewPosition;
+			NewPosition.X = rand() % 250 + (-125);
+			NewPosition.Y = rand() % 250 + (-125);
+			x,y = (NewPosition.X + NewPPosition.X) - (NewPosition.Y + NewPPosition.Y);
+			if (x,y >= 80 + (-80))
 			{
-				FTransform NewTransform(NewVector02); UE_LOG(LogTemp, Warning, TEXT("Distance x: %f"), x);
+				FTransform NewTransform(NewPosition); UE_LOG(LogTemp, Warning, TEXT("Distance x: %f"), x);
 				                                      UE_LOG(LogTemp, Warning, TEXT("Distance y: %f"), y)
 												      UE_LOG(LogTemp, Warning, TEXT("NewSpawn"));
 			}
