@@ -8,7 +8,7 @@
 #include "random"
 #include "Wall.h"
 
-
+using namespace std;
 // Sets default values
 ASnakeBase::ASnakeBase()
 {
@@ -25,7 +25,7 @@ void ASnakeBase::BeginPlay()
 	Super::BeginPlay();
 	SetActorTickInterval(MovementsSpeed);
 	AddSnakeElement(5);
-	CreateFoodActor();
+	CreateFoodActor(0);
 }
 
 // Called every frame
@@ -108,40 +108,49 @@ void ASnakeBase::SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActo
 }
 
 //–андомное по€вление актора еды в пределах пол€!
-void ASnakeBase::CreateFoodActor()
+void ASnakeBase::CreateFoodActor(float value)
 {
 	const int Height = (-400, 400);
 	const int Width = (-950, 950);
 	int x, y;
-	//x = rand() % 800 + (-400);	//предел пол€ от -400 до 400!
-	//y = rand() % 1900 + (-950);	//ѕредел пол€ от -950 до 950!
 	FVector NewPosition;
-	NewPosition.X = x = rand() % 400 + (-200);
-	NewPosition.Y = y = rand() % 950 + (-475);
+	NewPosition.X = x = rand() % 250 + (-125); //предел пол€ от -400 до 400!
+	NewPosition.Y = y = rand() % 250 + (-125); //ѕредел пол€ от -950 до 950!
 	NewPosition.Z = 0.f;
 	FTransform NewTransform(NewPosition);
+	NewSpawn(0, 1);
 	FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform(NewPosition));
+	
 }
 
 //≈сли еда соприкасаетс€ с преп€тствием, то она(еда) уничтожаетс€ и создаЄтс€ в новом месте 
 void ASnakeBase::NewSpawn(ASnaleElementBase* NewSnakeElem, float value)
 {
-	//FVector NewPosition;
-	//FTransform NewTransform(NewPosition);
 	if (SnakeElements.Num())
 	{
-		//GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform(NewPosition));
+		FVector NewVector01;
+		NewVector01.X = SnakeElements.Num();
+		NewVector01.Y = SnakeElements.Num();
 		if (value > 0 && FoodActor)
 		{
-			CreateFoodActor();
-			UE_LOG(LogTemp, Warning, TEXT("Spawn"));
+			float x, y;
+			FVector NewVector02;
+			NewVector02.X;
+			NewVector02.Y;
+			x,y = (NewVector02.X + NewVector01.X) - (NewVector02.Y + NewVector01.Y);
+			if (x <= 80 + (-80), 
+				y <= 80 + (-80))
+			{
+				FTransform NewTransform(NewVector02); UE_LOG(LogTemp, Warning, TEXT("Distance x: %f"), x);
+				                                      UE_LOG(LogTemp, Warning, TEXT("Distance y: %f"), y)
+												      UE_LOG(LogTemp, Warning, TEXT("NewSpawn"));
+			}
 		}
-		else if(value < 0 && SnakeElements.Num())
+		else if (value < 0 && FoodActor)
 		{
 			FVector NewPosition;
 			FTransform NewTransform(NewPosition);
-			Destroy();
-			UE_LOG(LogTemp, Warning, TEXT("Destroy"));
+			UE_LOG(LogTemp, Warning, TEXT("Spawn"));
 		}
 	}
-	
+}	

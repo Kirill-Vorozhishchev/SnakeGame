@@ -63,7 +63,7 @@ public:
 	UFUNCTION()
 	void SnakeElementOverlap(ASnaleElementBase* OverlappedElement, AActor* Other);
 	UFUNCTION()
-	void CreateFoodActor();
+	void CreateFoodActor(float value);
 	UFUNCTION()
 	void NewSpawn(ASnaleElementBase* NewSnakeElem, float value);
 };
