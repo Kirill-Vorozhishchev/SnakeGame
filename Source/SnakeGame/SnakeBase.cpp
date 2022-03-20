@@ -118,6 +118,8 @@ void ASnakeBase::CreateFoodActor(float value)
 	NewPosition.Y = y = rand() % 250 + (-125); //Предел поля от -950 до 950!
 	NewPosition.Z = 0.f;
 	FTransform NewTransform(NewPosition);
+	//UE_LOG(LogTemp, Warning, TEXT("Distance x: %f"), NewPosition.X)
+	//UE_LOG(LogTemp, Warning, TEXT("Distance y: %f"), NewPosition.Y)
 	NewSpawn(0, 1);
 	FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform(NewPosition));
 	
@@ -129,27 +131,28 @@ void ASnakeBase::NewSpawn(ASnaleElementBase* NewSnakeElem, float value)
 	if (SnakeElements.Num())
 	{
 		FVector NewPPosition;
-		NewPPosition.X = SnakeElements.Num();
-		NewPPosition.Y = SnakeElements.Num();
+		NewPPosition.X = 80 + (-80);
+		NewPPosition.Y = 80 + (-80);
 		if (value > 0 && FoodActor)
 		{
 			float x, y;
 			FVector NewPosition;
 			NewPosition.X = rand() % 250 + (-125);
 			NewPosition.Y = rand() % 250 + (-125);
-			x,y = (NewPosition.X + NewPPosition.X) - (NewPosition.Y + NewPPosition.Y);
-			if (x,y >= 80 + (-80))
+			x, y = (NewPosition.X + NewPPosition.X) - (NewPosition.Y + NewPPosition.Y);
+		
+			if (x, y >= 80 + (-80))
 			{
 				FTransform NewTransform(NewPosition); UE_LOG(LogTemp, Warning, TEXT("Distance x: %f"), x);
-				                                      UE_LOG(LogTemp, Warning, TEXT("Distance y: %f"), y)
-												      UE_LOG(LogTemp, Warning, TEXT("NewSpawn"));
+													  UE_LOG(LogTemp, Warning, TEXT("Distance y: %f"), y)
+													  UE_LOG(LogTemp, Warning, TEXT("NewSpawn"));
 			}
 		}
-		else if (value < 0 && FoodActor)
+		else if (value > 0 && FoodActor)
 		{
 			FVector NewPosition;
 			FTransform NewTransform(NewPosition);
 			UE_LOG(LogTemp, Warning, TEXT("Spawn"));
 		}
 	}
-}	
+}
