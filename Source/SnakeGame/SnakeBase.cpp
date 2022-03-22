@@ -118,40 +118,39 @@ void ASnakeBase::CreateFoodActor(float value)
 	NewPosition.Y = y = rand() % 250 + (-125); //Предел поля от -950 до 950!
 	NewPosition.Z = 0.f;
 	FTransform NewTransform(NewPosition);
-	//UE_LOG(LogTemp, Warning, TEXT("Distance x: %f"), NewPosition.X)
-	//UE_LOG(LogTemp, Warning, TEXT("Distance y: %f"), NewPosition.Y)
 	NewSpawn(0, 1);
 	FoodActor = GetWorld()->SpawnActor<AFood>(FoodActorClass, FTransform(NewPosition));
 	
 }
 
-//Если еда соприкасается с препятствием, то она(еда) уничтожается и создаётся в новом месте 
+//Если еда соприкасается с змейкой, то она(еда) уничтожается и создаётся в новом месте 
 void ASnakeBase::NewSpawn(ASnaleElementBase* NewSnakeElem, float value)
 {
 	if (SnakeElements.Num())
 	{
+		float x, y;
 		FVector NewPPosition;
-		NewPPosition.X = 80 + (-80);
-		NewPPosition.Y = 80 + (-80);
+		NewPPosition.X = x = rand() % 250 + (-125);;
+		NewPPosition.Y;; //= x = rand() % 250 + (-125);
 		if (value > 0 && FoodActor)
 		{
-			float x, y;
 			FVector NewPosition;
-			NewPosition.X = rand() % 250 + (-125);
-			NewPosition.Y = rand() % 250 + (-125);
+			NewPosition.X; //= x = rand() % 250 + (-125);
+			NewPosition.Y = x = rand() % 250 + (-125);
+			//FTransform NewTransform(NewPosition);
 			x, y = (NewPosition.X + NewPPosition.X) - (NewPosition.Y + NewPPosition.Y);
 		
-			if (x, y >= 80 + (-80))
+			if (x <= rand() % 80 + (-80), y <= rand() % 80 + (-80))
 			{
-				FTransform NewTransform(NewPosition); UE_LOG(LogTemp, Warning, TEXT("Distance x: %f"), x);
-													  UE_LOG(LogTemp, Warning, TEXT("Distance y: %f"), y)
-													  UE_LOG(LogTemp, Warning, TEXT("NewSpawn"));
+				/*FTransform NewTransform(NewPosition)*/; UE_LOG(LogTemp, Warning, TEXT("Distance x: %f"), x);
+													      UE_LOG(LogTemp, Warning, TEXT("Distance y: %f"), y)
+													      UE_LOG(LogTemp, Warning, TEXT("NewSpawn"));
 			}
 		}
 		else if (value > 0 && FoodActor)
 		{
-			FVector NewPosition;
-			FTransform NewTransform(NewPosition);
+		//	FVector NewPosition;
+			//FTransform NewTransform(NewPosition);
 			UE_LOG(LogTemp, Warning, TEXT("Spawn"));
 		}
 	}
